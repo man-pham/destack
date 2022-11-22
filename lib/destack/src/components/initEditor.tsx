@@ -54,7 +54,7 @@ const initEditor = async (startServer = true, standaloneServer): Promise<void> =
 const loadTemplate = async (editor, standaloneServer): Promise<void> => {
   const baseUrl = standaloneServer ? `http://localhost:${port}` : ''
   const data = await fetchJSON({ method: 'get', url: `${baseUrl}/api/builder/handle` })
-  const pathNameWindows = location.pathname === '/' ? '\\default.json' : `${location.pathname}.json`
+  const pathNameWindows = location.pathname === '/' ? '\\default.json' : `\\${location.pathname.substring(1)}.json`
   const pathNameUnix = location.pathname === '/' ? '/default.json' : `${location.pathname}.json`
   const component = Object.keys(data).find((c) =>
     [pathNameWindows, pathNameUnix].includes(data[c].filename),
